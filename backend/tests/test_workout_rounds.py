@@ -48,3 +48,12 @@ def test_returns_error_if_round_duration_not_an_integer(workout_rounds):
   with pytest.raises(Exception) as e:
     workout_rounds.add_round("Squats", 20.5)
   assert str(e.value) == "Round duration must be a whole number in seconds, e.g 60 or 120"
+
+def test_adding_round_then_amending_details():
+    workout_rounds = WorkoutRounds()
+    workout_rounds.add_round("squats", 30)
+    workout_rounds.edit_round(1, "lunges", 40)
+    rounds = workout_rounds.get_all_rounds()
+    assert rounds == [{"round_number": 1, 
+                      "exercise_name": "lunges",
+                      "round_duration": 40}]

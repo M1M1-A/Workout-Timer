@@ -25,7 +25,12 @@ class WorkoutRounds:
     return self.rounds
 
   def edit_round(self, round_number, exercise_name, round_duration):
-    pass
+    for round in self.rounds:
+        if round["round_number"] == round_number:
+            round["exercise_name"] = exercise_name
+            round["round_duration"] = round_duration
+            return True
+        return False 
 
   def delete_all_rounds(self):
     pass
