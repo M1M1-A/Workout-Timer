@@ -43,5 +43,5 @@ class WorkoutRounds:
     return False 
 
   def delete_all_rounds(self):
-    pass
+    self.rounds = []
   
