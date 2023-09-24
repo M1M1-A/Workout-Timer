@@ -97,3 +97,10 @@ def test_deleting_all_rounds_resets_rounds_to_empty(workout_rounds):
     workout_rounds.delete_all_rounds()
     rounds = workout_rounds.get_all_rounds()
     assert rounds == []
+
+def test_adding_multiple_rounds_and_resetting_to_empty(workout_rounds):
+    workout_rounds.add_round("squats", 30)
+    workout_rounds.add_round("lunges", 30)
+    workout_rounds.delete_all_rounds()
+    rounds = workout_rounds.get_all_rounds()
+    assert rounds == []
