@@ -72,3 +72,19 @@ def test_amending_details_for_multiple_rounds():
                       "exercise_name": "lunges",
                       "round_duration": 40}
                       ]
+    
+def test_amending_round_details_without_exercise_name():
+    workout_rounds = WorkoutRounds()
+    workout_rounds.add_round("squats", 30)
+    with pytest.raises (Exception) as e:
+      workout_rounds.edit_round(1, "", 40)
+
+    assert str(e.value) == "Exercise name cannot be blank"
+
+def test_amending_round_details_without_round_duration():
+    workout_rounds = WorkoutRounds()
+    workout_rounds.add_round("squats", 30)
+    with pytest.raises (Exception) as e:
+      workout_rounds.edit_round(1, "squats", "")
+
+    assert str(e.value) == "Round duration cannot be blank"

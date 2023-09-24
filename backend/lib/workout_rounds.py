@@ -27,6 +27,12 @@ class WorkoutRounds:
   def edit_round(self, round_number, exercise_name, round_duration):
     for round in self.rounds:
         if round["round_number"] == round_number:
+            if exercise_name == "":
+              raise Exception("Exercise name cannot be blank")
+        
+            if round_duration == "":
+              raise Exception("Round duration cannot be blank")
+
             round["exercise_name"] = exercise_name
             round["round_duration"] = round_duration
             return True
