@@ -38,3 +38,8 @@ def test_returns_error_if_round_added_without_exercise_name(workout_rounds):
   with pytest.raises(Exception) as e:
     workout_rounds.add_round("", 30)
   assert str(e.value) == "Exercise name cannot be blank"
+
+def test_returns_error_if_round_added_without_round_duration(workout_rounds):
+  with pytest.raises(Exception) as e:
+    workout_rounds.add_round("Squats", "")
+  assert str(e.value) == "Round duration cannot be blank"
