@@ -4,6 +4,8 @@ class WorkoutRounds:
     self.rounds = []
 
   def add_round(self, exercise_name, round_duration):
+    if exercise_name == "":
+      raise Exception("Exercise name cannot be blank")
     round = {
       "round_number": len(self.rounds) + 1,
       "exercise_name": exercise_name,
