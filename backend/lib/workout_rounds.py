@@ -4,7 +4,13 @@ class WorkoutRounds:
     self.rounds = []
 
   def add_round(self, exercise_name, round_duration):
-    pass
+    round = {
+      "round_number": len(self.rounds) + 1,
+      "exercise_name": exercise_name,
+      "round_duration": round_duration
+    }
+
+    self.rounds.append(round)
 
   def get_all_rounds(self):
     return self.rounds
