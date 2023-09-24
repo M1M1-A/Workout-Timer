@@ -32,10 +32,14 @@ class WorkoutRounds:
         
             if round_duration == "":
               raise Exception("Round duration cannot be blank")
+            
+            if not isinstance(round_duration, (int)):
+              raise Exception("Round duration must be a whole number in seconds, e.g 60 or 120")
 
             round["exercise_name"] = exercise_name
             round["round_duration"] = round_duration
             return True
+        
     return False 
 
   def delete_all_rounds(self):

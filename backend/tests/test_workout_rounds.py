@@ -73,7 +73,7 @@ def test_amending_details_for_multiple_rounds():
                       "round_duration": 40}
                       ]
     
-def test_amending_round_details_without_exercise_name():
+def test_amending_round_details_without_exercise_name_raises_error():
     workout_rounds = WorkoutRounds()
     workout_rounds.add_round("squats", 30)
     with pytest.raises (Exception) as e:
@@ -81,10 +81,18 @@ def test_amending_round_details_without_exercise_name():
 
     assert str(e.value) == "Exercise name cannot be blank"
 
-def test_amending_round_details_without_round_duration():
+def test_amending_round_details_without_round_duration_raises_error():
     workout_rounds = WorkoutRounds()
     workout_rounds.add_round("squats", 30)
     with pytest.raises (Exception) as e:
       workout_rounds.edit_round(1, "squats", "")
 
     assert str(e.value) == "Round duration cannot be blank"
+
+def test_returns_error_if_round_duration_not_integer():
+    workout_rounds = WorkoutRounds()
+    workout_rounds.add_round("squats", 30)
+    with pytest.raises (Exception) as e:
+      workout_rounds.edit_round(1, "squats", 20.5)
+
+    assert str(e.value) == "Round duration must be a whole number in seconds, e.g 60 or 120"
