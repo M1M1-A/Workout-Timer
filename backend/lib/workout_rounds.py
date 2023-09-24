@@ -30,7 +30,7 @@ class WorkoutRounds:
             round["exercise_name"] = exercise_name
             round["round_duration"] = round_duration
             return True
-        return False 
+    return False 
 
   def delete_all_rounds(self):
     pass
