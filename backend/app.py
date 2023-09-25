@@ -31,8 +31,11 @@ def edit_round():
 
     return jsonify({'message': 'Round updated successfully'}), 201
 
-# @app.route('/delete_all', methods=['DELETE'])
+@app.route('/delete_all', methods=['DELETE'])
+def delete_all_rounds():
+    workout_rounds.delete_all_rounds()
 
+    return jsonify({'message': 'All rounds deleted and reset'}), 201
 
 if __name__ == '__main__':
     app.run(debug=True)

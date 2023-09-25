@@ -46,3 +46,17 @@ def test_edit_round(client):
     data = json.loads(response2.get_data(as_text=True))
 
     assert "Lunges" in data[0]["exercise_name"] 
+
+def test_deleting_all_rounds_and_resetting(client):
+    client.post('/add_round', json={"exercise_name": "Squats", "round_duration": 30})
+    response = client.delete('/delete_all')
+    data = json.loads(response.get_data(as_text=True))
+
+    assert response.status_code == 201
+    assert data['message'] == "All rounds deleted and reset"
+
+    response2 = client.get('/get_rounds')
+    data = json.loads(response2.get_data(as_text=True))
+
+    assert data == []
+    assert len(data) == 0 
