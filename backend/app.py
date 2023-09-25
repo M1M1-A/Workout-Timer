@@ -20,8 +20,16 @@ def add_round():
 
     return jsonify({'message': 'Round added successfully'}), 201
 
-# @app.route('/edit_round', methods=['UPDATE'])
+@app.route('/edit_round', methods=['PUT'])
+def edit_round():
+    data = request.json
+    round_number = data.get('round_number')
+    exercise_name = data.get('exercise_name')
+    round_duration = data.get('round_duration')
 
+    workout_rounds.edit_round(round_number, exercise_name, round_duration)
+
+    return jsonify({'message': 'Round updated successfully'}), 201
 
 # @app.route('/delete_all', methods=['DELETE'])
 
