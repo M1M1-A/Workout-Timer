@@ -88,6 +88,7 @@ function App() {
         <label>
           Exercise Name:
           <input
+            id='exercise_name'
             type="text"
             value={exerciseName}
             onChange={(e) => setExerciseName(e.target.value)}
@@ -97,13 +98,14 @@ function App() {
         <label>
           Round Duration:
           <input
+            id='round_duration'
             type="text"
             value={roundDuration}
             onChange={(e) => setRoundDuration(e.target.value)}
           />
         </label>
         <br />
-        <button onClick={handleSaveRound}>Add Round</button>
+        <button id='add_round' onClick={handleSaveRound}>Add Round</button>
       </div>
       <br />
       <button id="start-workout" onClick={handleStartWorkout}>
