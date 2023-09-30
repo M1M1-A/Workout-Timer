@@ -49,6 +49,7 @@ def test_edit_round(client):
 
 def test_deleting_all_rounds_and_resetting(client):
     client.post('/add_round', json={"exercise_name": "Squats", "round_duration": 30})
+    
     response = client.delete('/delete_all')
     data = json.loads(response.get_data(as_text=True))
 
