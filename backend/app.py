@@ -16,9 +16,18 @@ def add_round():
     exercise_name = data.get('exercise_name')
     round_duration = data.get('round_duration')
 
-    workout_rounds.add_round(exercise_name, round_duration)
+    if exercise_name == "":
+        return jsonify({'message': 'Exercise name cannot be blank'}), 400
+    
+    if round_duration == "":
+        return jsonify({'message': "Round duration cannot be blank"}), 400
 
-    return jsonify({'message': 'Round added successfully'}), 201
+    if not isinstance(round_duration, (int)):
+        return jsonify({'message': "Round duration must be a whole number in seconds, e.g 60 or 120"}), 400
+
+    else:
+        workout_rounds.add_round(exercise_name, round_duration)
+        return jsonify({'message': 'Round added successfully'}), 201
 
 @app.route('/edit_round', methods=['PUT'])
 def edit_round():
@@ -26,6 +35,15 @@ def edit_round():
     round_number = data.get('round_number')
     exercise_name = data.get('exercise_name')
     round_duration = data.get('round_duration')
+
+    if exercise_name == "":
+        return jsonify({'message': "Exercise name cannot be blank"}), 400
+
+    if round_duration == "":
+        return jsonify({'message': "Round duration cannot be blank"}), 400
+
+    if not isinstance(round_duration, (int)):
+        return jsonify({'message': "Round duration must be a whole number in seconds, e.g 60 or 120"}), 400
 
     workout_rounds.edit_round(round_number, exercise_name, round_duration)
 
