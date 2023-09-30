@@ -4,6 +4,7 @@ describe("App", () => {
   })
 
   afterEach(() => {
+    cy.wait(2000)
     cy.get('#reset-button').should('be.visible').click();
   })
 
@@ -59,7 +60,7 @@ describe("App", () => {
 
   })
 
-  it.only("Clears all round information and resets the page when reset is clicked", () => {
+  it("Clears all round information and resets the page when reset is clicked", () => {
     cy.get('#exercise_name').type("Squats")
     cy.get('#round_duration').type(5)
     cy.get('#add_round').click()
@@ -70,5 +71,22 @@ describe("App", () => {
     cy.contains('No rounds available. Add round to get started').should('be.visible')
   })
 
-  // edge cases e.g. not entering a number for round_duration
+  it("shows an error message if exercise name is blank", () => {
+    cy.get('#round_duration').type(5)
+    cy.get('#add_round').click()
+
+    cy.wait(2000)
+
+    cy.contains('Exercise name cannot be blank').should('be.visible')
+  })
+
+  it("shows an error message if round duration is empty", () => {
+    cy.get('#exercise_name').type("Squats")
+    cy.get('#add_round').click()
+
+    cy.wait(2000)
+
+    cy.contains('Round duration must be a whole number in seconds, e.g 60 or 120').should('be.visible')
+  })
+
 })

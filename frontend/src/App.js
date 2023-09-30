@@ -5,6 +5,7 @@ import "./App.css";
 function App() {
   const [rounds, setRounds] = useState([]);
   const [exerciseName, setExerciseName] = useState("");
+  const [error, setError] = useState("")
   const [roundDuration, setRoundDuration] = useState("");
   const [startWorkout, setStartWorkout] = useState(false);
 
@@ -40,11 +41,14 @@ function App() {
       if (response.ok) {
         setExerciseName("");
         setRoundDuration("");
+        setError("");
         const updatedResponse = await fetch("/get_rounds");
         const updatedData = await updatedResponse.json();
         setRounds(updatedData);
       } else {
-        console.error("Failed to add round");
+        const errorData = await response.json()
+        setError(errorData.message)
+        console.error("Failed to add round")
       }
     } catch (error) {
       console.error("Save round error", error);
@@ -66,6 +70,7 @@ function App() {
     if (response.ok) {
       setRounds([]);
       setStartWorkout(false);
+      setError("")
     }
   };
 
@@ -107,6 +112,7 @@ function App() {
         <br />
         <button id='add_round' onClick={handleSaveRound}>Add Round</button>
       </div>
+      {error && <div className="error-message">{error}</div>}
       <br />
       <button id="start-workout" onClick={handleStartWorkout}>
         Start Workout

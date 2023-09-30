@@ -1,5 +1,3 @@
-from flask import jsonify
-
 class WorkoutRounds:
   def __init__(self):
     self.rounds = []
