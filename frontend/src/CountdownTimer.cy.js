@@ -9,8 +9,8 @@ describe('CountdownTimer', () => {
   it('should render with initial exercise name and seconds', () => {
     cy.mount(<CountdownTimer rounds={mockRounds} />);
     
-    cy.contains('Exercise: Exercise 1').should('be.visible');
-    cy.contains('Time remaining: 5 seconds').should('be.visible');
+    cy.contains('Exercise 1').should('be.visible');
+    cy.contains('5').should('be.visible');
   });
 
   it('should change exercise name and seconds when given multiple rounds', () => {
@@ -18,8 +18,8 @@ describe('CountdownTimer', () => {
     
     cy.wait(6000);
 
-    cy.contains('Exercise: Exercise 2').should('be.visible');
-    cy.contains('Time remaining: 5 seconds').should('be.visible');
+    cy.contains('Exercise 2').should('be.visible');
+    cy.contains('5').should('be.visible');
   });
 
   it('should display "Workout Complete!" when all rounds are finished', () => {

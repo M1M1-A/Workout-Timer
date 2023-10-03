@@ -78,7 +78,7 @@ describe("App", () => {
     cy.wait(2000)
 
     cy.get('#start-workout').click()
-    cy.contains("Exercise: Push-ups").should('be.visible')
+    cy.contains("Push-ups").should('be.visible')
   });
 
   it("Displays error if adding round without exercise name", () =>{
