@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './CountdownTimer.css'
 
 function CountdownTimer({ rounds }) {
   const [currentRound, setCurrentRound] = useState(0);
@@ -23,17 +24,21 @@ function CountdownTimer({ rounds }) {
   }, [seconds, currentRound, rounds]);
 
   return (
-    <div>
+    <div className="container">
       {workoutInProgress ? (
-        <div>
-          <p>Exercise: {rounds[currentRound].exercise_name}</p>
-          <p>Time remaining: {seconds} seconds</p>
+        <div className='countdown'>
+          <div>
+            <p className='exercise'>{rounds[currentRound].exercise_name}</p>
+          </div>
+          <div className='seconds-div'>
+            <p>{seconds}</p>
+          </div>
         </div>
       ) : (
-        <p>Workout Complete!</p>
+        <p className='workout-complete'>Workout Complete!</p>
       )}
     </div>
-  );
+  );  
 }
 
 export default CountdownTimer;
