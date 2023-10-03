@@ -81,7 +81,7 @@ def test_returns_error_if_round_duration_not_an_integer(client):
     data = json.loads(response.get_data(as_text=True))
 
     assert response.status_code == 400
-    assert data['message'] == "Round duration must be a whole number in seconds, e.g 60 or 120"
+    assert data['message'] == "Enter a duration in seconds, e.g 60 or 120"
 
 def test_amending_round_details_without_exercise_name_raises_error(client):
     client.post('/add_round', json={"exercise_name": "Squats", "round_duration": 30})

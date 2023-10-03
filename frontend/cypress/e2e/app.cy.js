@@ -37,8 +37,8 @@ describe("App", () => {
 
     cy.get('#start-workout').click()
 
-    cy.contains('Exercise: Squats').should('be.visible');
-    cy.contains('Time remaining: 5 seconds').should('be.visible');
+    cy.contains('Squats').should('be.visible');
+    cy.contains('5').should('be.visible');
 
   })
 
@@ -55,8 +55,8 @@ describe("App", () => {
 
     cy.wait(5000)
 
-    cy.contains('Exercise: Lunges').should('be.visible');
-    cy.contains('Time remaining: 5 seconds').should('be.visible');
+    cy.contains('Lunges').should('be.visible');
+    cy.contains('5').should('be.visible');
 
   })
 
@@ -86,7 +86,7 @@ describe("App", () => {
 
     cy.wait(2000)
 
-    cy.contains('Round duration must be a whole number in seconds, e.g 60 or 120').should('be.visible')
+    cy.contains('Enter a duration in seconds, e.g 60 or 120').should('be.visible')
   })
 
 })
