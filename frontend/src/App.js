@@ -76,20 +76,41 @@ function App() {
 
   return (
     <div className="App">
+      <div className="bg"></div>
+      <div className="bg bg2"></div>
+      <div className="bg bg3"></div>
       <h1>Workout Interval Timer</h1>
       <h2>Round(s)</h2>
+      <div className="info-container">
+        <div className="round-info">
+          <p className="column-name">Round Number</p>
+        </div>
+        <div>
+          <p className="column-name">Exercise</p>
+        </div>
+        <div>
+          <p className="column-name">Duration (seconds)</p>
+        </div>
+      </div>
       {rounds.length > 0 ? (
         rounds.map((round, index) => (
-          <div key={index}>
-            <p>Round Number: {round.round_number}</p>
-            <p>Exercise: {round.exercise_name}</p>
-            <p>Duration: {round.round_duration}</p>
+          <div className='info-container' key={index}>
+            <div className="round-info">
+              <p className="info-field">{round.round_number}</p>
+            </div>
+            <div>
+              <p className="info-field">{round.exercise_name}</p>
+            </div>
+            <div>
+              <p className="info-field">{round.round_duration}</p>
+            </div>
           </div>
         ))
       ) : (
-        <p>No rounds available. Add round to get started</p>
+        <p className="no-rounds">No rounds available. Add round to get started</p>
       )}
-      <div>
+      <div className="input-fields">
+        <div className="empty-div"></div>
         <label>
           Exercise Name:
           <input
@@ -101,7 +122,7 @@ function App() {
         </label>
         <br />
         <label>
-          Round Duration:
+          Duration (seconds):
           <input
             id='round_duration'
             type="text"
@@ -110,7 +131,7 @@ function App() {
           />
         </label>
         <br />
-        <button id='add_round' onClick={handleSaveRound}>Add Round</button>
+        <button id='add_round' onClick={handleSaveRound}>+</button>
       </div>
       {error && <div className="error-message">{error}</div>}
       <br />

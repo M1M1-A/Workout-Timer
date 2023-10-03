@@ -23,7 +23,7 @@ def add_round():
         return jsonify({'message': "Round duration cannot be blank"}), 400
 
     if not isinstance(round_duration, (int)):
-        return jsonify({'message': "Round duration must be a whole number in seconds, e.g 60 or 120"}), 400
+        return jsonify({'message': "Enter a duration in seconds, e.g 60 or 120"}), 400
 
     else:
         workout_rounds.add_round(exercise_name, round_duration)
